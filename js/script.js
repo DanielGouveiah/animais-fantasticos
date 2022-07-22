@@ -7,13 +7,15 @@ import initMenuMobile from "./modules/menuMobile.js";
 import initModal from "./modules/modal.js";
 import initNavTab from "./modules/navTab.js";
 import innitScrollAnimation from "./modules/scroll-animacao.js";
-import initScrollSuave from "./modules/scroll-suave.js";
+import ScrollSuave from "./modules/scroll-suave.js";
 import initToolTip from "./modules/toolTip.js";
+
+const scrollSuave = new ScrollSuave("[data-menu='suave'] a[href^='#']");
+scrollSuave.init();
 
 initNavTab();
 initAccordion();
 innitScrollAnimation();
-initScrollSuave();
 initModal();
 initToolTip();
 initDropDown();
