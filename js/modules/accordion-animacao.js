@@ -1,15 +1,28 @@
-export default function initAccordion() {
-  const activeClass = "ativo";
-  const dt = document.querySelectorAll("[data-anime='accordion'] dt");
-  dt[0].classList.add("ativo");
-  dt[0].nextElementSibling.classList.add("ativo");
-  function accordionActive() {
-    this.classList.toggle(activeClass);
-    this.nextElementSibling.classList.toggle(activeClass);
+export default class Accordion {
+  constructor(list) {
+    this.accordionList = document.querySelectorAll(list);
+    this.activeClass = "ativo";
   }
-  if (dt.length) {
-    dt.forEach((item) => {
-      item.addEventListener("click", accordionActive);
-    });
+
+  // Executa o evento de toggle
+  toggleAccordion(item) {
+    item.classList.toggle(this.activeClass);
+    item.nextElementSibling.classList.toggle(this.activeClass);
+  }
+
+  // Adiciona o evento de toggle
+  addEventElement() {
+    if (this.accordionList.length) {
+      this.accordionList.forEach((item) => {
+        item.addEventListener("click", () => this.toggleAccordion(item));
+      });
+    }
+  }
+
+  // Inicia o accordion
+  init() {
+    // Adiciona ativo ao primeiro item
+    this.toggleAccordion(this.accordionList[0]);
+    this.addEventElement();
   }
 }
