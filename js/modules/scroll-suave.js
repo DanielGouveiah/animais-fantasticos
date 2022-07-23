@@ -12,6 +12,7 @@ export default class ScrollSuave {
     this.scrollSuave = this.scrollSuave.bind(this);
   }
 
+  // Ativa o scroll Suave
   scrollSuave(event) {
     event.preventDefault();
     const href = event.currentTarget.getAttribute("href");
@@ -19,12 +20,14 @@ export default class ScrollSuave {
     section.scrollIntoView(this.options);
   }
 
+  // Adiciona evento aos elementos
   addEventElement() {
     this.linksInternos.forEach((link) => {
       link.addEventListener("click", this.scrollSuave);
     });
   }
 
+  // Inicia Classe
   init() {
     if (this.linksInternos.length) {
       this.addEventElement();
