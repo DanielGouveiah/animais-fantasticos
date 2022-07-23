@@ -5,6 +5,7 @@ export default class TabNav {
     this.tabContent = document.querySelectorAll(content);
   }
 
+  // Adiciona ativo na tab que foi selecionada
   activeTab(index) {
     this.tabContent.forEach((section) => {
       section.classList.remove(this.activeClass);
@@ -13,6 +14,7 @@ export default class TabNav {
     this.tabContent[index].classList.add(this.activeClass, direcao);
   }
 
+  // Adiciona os eventos
   addEventElement() {
     this.tabMenu.forEach((item, index) => {
       item.addEventListener("click", () => {
@@ -21,6 +23,7 @@ export default class TabNav {
     });
   }
 
+  // Inicia classe e ativa o primeiro conteudo
   init() {
     if (this.tabMenu.length && this.tabContent.length) {
       this.activeTab(0);
