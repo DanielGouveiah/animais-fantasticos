@@ -21,8 +21,11 @@ export default class Accordion {
 
   // Inicia o accordion
   init() {
-    // Adiciona ativo ao primeiro item
-    this.toggleAccordion(this.accordionList[0]);
-    this.addEventElement();
+    if (this.accordionList.length) {
+      // Adiciona ativo ao primeiro item
+      this.toggleAccordion(this.accordionList[0]);
+      this.addEventElement();
+    }
+    return this;
   }
 }
