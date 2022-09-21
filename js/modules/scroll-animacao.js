@@ -1,24 +1,42 @@
 export default class ScrollAnima {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
-    this.windowMetade = window.innerHeight * 0.7;
-    this.animaScroll = this.animaScroll.bind(this);
+    this.windowMetade = window.innerHeight * 0.5;
+    this.checkDistance = this.checkDistance.bind(this);
   }
 
-  animaScroll() {
-    this.sections.forEach((section) => {
-      const sectionTop = section.getBoundingClientRect().top;
-      const isSectionVisible = sectionTop - this.windowMetade;
-      if (isSectionVisible < 0) {
-        section.classList.add("ativo");
+  getDistance() {
+    this.distance = [...this.sections].map((section) => {
+      const offSet = section.offsetTop;
+      return {
+        element: section,
+        offSet: Math.floor(offSet - this.windowMetade),
+      };
+    });
+  }
+
+  checkDistance() {
+    this.distance.forEach((item) => {
+      if (window.pageYOffset > item.offSet) {
+        item.element.classList.add("ativo");
       } else {
-        section.classList.remove("ativo");
+        item.element.classList.remove("ativo");
       }
     });
   }
 
   init() {
-    this.animaScroll();
-    window.addEventListener("scroll", this.animaScroll);
+    if (this.sections.length) {
+      this.getDistance();
+      this.checkDistance();
+      window.addEventListener("scroll", this.checkDistance);
+    }
+    return this;
+  }
+
+  // Remove a animação ao scroll
+  stop() {
+    window.removeEventListener("scroll", this.checkDistance);
+    return this;
   }
 }
