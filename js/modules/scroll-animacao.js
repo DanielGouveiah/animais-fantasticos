@@ -1,10 +1,14 @@
-export default function innitScrollAnimation() {
-  const sections = document.querySelectorAll("[data-anime='scroll']");
-  function animacaoScroll() {
-    const windowMetade = window.innerHeight * 0.7;
-    sections.forEach((section) => {
+export default class ScrollAnima {
+  constructor(sections) {
+    this.sections = document.querySelectorAll(sections);
+    this.windowMetade = window.innerHeight * 0.7;
+    this.animaScroll = this.animaScroll.bind(this);
+  }
+
+  animaScroll() {
+    this.sections.forEach((section) => {
       const sectionTop = section.getBoundingClientRect().top;
-      const isSectionVisible = sectionTop - windowMetade;
+      const isSectionVisible = sectionTop - this.windowMetade;
       if (isSectionVisible < 0) {
         section.classList.add("ativo");
       } else {
@@ -12,9 +16,9 @@ export default function innitScrollAnimation() {
       }
     });
   }
-  if (sections.length) {
-    animacaoScroll();
 
-    window.addEventListener("scroll", animacaoScroll);
+  init() {
+    this.animaScroll();
+    window.addEventListener("scroll", this.animaScroll);
   }
 }
