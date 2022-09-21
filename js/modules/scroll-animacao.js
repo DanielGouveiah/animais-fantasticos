@@ -1,8 +1,10 @@
+import debouce from "./debounce";
+
 export default class ScrollAnima {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
     this.windowMetade = window.innerHeight * 0.5;
-    this.checkDistance = this.checkDistance.bind(this);
+    this.checkDistance = debouce(this.checkDistance.bind(this), 50);
   }
 
   getDistance() {
@@ -23,6 +25,7 @@ export default class ScrollAnima {
         item.element.classList.remove("ativo");
       }
     });
+    console.log("teste");
   }
 
   init() {
