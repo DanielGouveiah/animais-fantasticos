@@ -25,7 +25,6 @@ export default class ScrollAnima {
         item.element.classList.remove("ativo");
       }
     });
-    console.log("teste");
   }
 
   init() {
