@@ -28,5 +28,6 @@ export default class MenuMobile {
 
   init() {
     this.addElementEvent();
+    return this;
   }
 }
