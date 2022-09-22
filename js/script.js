@@ -41,5 +41,5 @@ funcionamento.init();
 const menuMobile = new MenuMobile("[data-menu='button']", "[data-menu='list']");
 menuMobile.init();
 
-AnimaisFetch("../../animaisapi.json", ".numeros-grid");
+AnimaisFetch("./animaisapi.json", ".numeros-grid");
 FetchBitcoin("https://blockchain.info/ticker", ".btc-preco");
