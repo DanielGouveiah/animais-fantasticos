@@ -37,8 +37,21 @@ body {
   -webkit-font-smoothing: antialiased;
   position: relative;
 }
+
+body::-webkit-scrollbar {
+  background-color: white;
+  width: 12px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #e54;
+  border-left: 2px solid #faf6ed;
+  border-right: 2px solid #faf6ed;
+  border-radius: 20px;
+}
+
 body.parado {
   overflow-y: hidden;
+  padding-right: 12px;
 }
 
 .grid-container {
@@ -250,6 +263,10 @@ body.parado {
     font-size: 3rem;
     margin-bottom: 10px;
   }
+  body.parado {
+    overflow-y: hidden;
+    padding-right: 0px;
+  }
 }
 
 /* js-modificações */
@@ -303,12 +320,18 @@ body.parado {
 }
 
 .js-dt::after {
-  content: "⬎";
+  content: "";
+  background: url("../img/arrow-red.svg") no-repeat center center;
+  display: inline-block;
+  width: 12px;
+  height: 14px;
   margin-left: 10px;
+  transform: rotate(90deg);
+  transition: transform 0.3s;
 }
 
 .js-dt.ativo::after {
-  content: "⬏";
+  transform: rotate(-90deg);
 }
 
 @keyframes slideDown {
@@ -352,4 +375,11 @@ body.parado {
   padding: 0.2rem 0.4rem;
   border-radius: 2px;
   font-weight: bold;
+}
+
+.arrow-black {
+  background: url("../img/arrow-black.svg") no-repeat center center;
+  display: inline-block;
+  width: 6px;
+  height: 12px;
 }
